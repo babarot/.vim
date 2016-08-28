@@ -1,9 +1,9 @@
 let g:p = {
-      \ "plug":   expand(g:env.path.vim) . "/autoload/plug.vim",
-      \ "base":   expand(g:env.path.vim) . "/plugged",
-      \ "url":    "https://raw.github.com/junegunn/vim-plug/master/plug.vim",
-      \ "github": "https://github.com/junegunn/vim-plug",
-      \ }
+            \ "plug":   expand(g:env.path.vim) . "/autoload/plug.vim",
+            \ "base":   expand(g:env.path.vim) . "/plugged",
+            \ "url":    "https://raw.github.com/junegunn/vim-plug/master/plug.vim",
+            \ "github": "https://github.com/junegunn/vim-plug",
+            \ }
 
 function! g:p.ready()
   return filereadable(self.plug)
@@ -61,6 +61,7 @@ if g:p.ready() && g:vimrc_plugin_on
   Plug 'w0ng/vim-hybrid'
   Plug 'junegunn/seoul256.vim'
   Plug 'nanotech/jellybeans.vim'
+  Plug 'whatyouhide/vim-gotham'
   
   Plug 'thinca/vim-prettyprint', { 'on': 'PP' }
   Plug 'rhysd/github-complete.vim'

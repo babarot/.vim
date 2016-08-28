@@ -8,11 +8,11 @@ else
 endif
 
 set t_Co=256
-if g:p.is_installed("solarized.vim") && $TERM_PROGRAM ==# "Apple_Terminal"
+if g:p.is_installed('solarized.vim') && $TERM_PROGRAM ==# "Apple_Terminal"
   colorscheme solarized
-"elseif g:p.is_installed("seoul256.vim")
-  "colorscheme seoul256.vim
-elseif g:p.is_installed("hybrid")
+elseif g:p.is_installed('seoul256')
+  colorscheme seoul256
+elseif g:p.is_installed('hybrid')
   colorscheme hybrid
 endif
 

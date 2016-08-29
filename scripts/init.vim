@@ -59,6 +59,7 @@ if g:env.is_starting
 endif
 
 call s:load('plug.vim')
+"call s:load('dein.vim')
 call s:load('functions.vim')
 call s:load('base.vim')
 call s:load('options.vim')

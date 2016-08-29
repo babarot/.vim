@@ -16,12 +16,21 @@ if g:p.ready() && g:vimrc_plugin_on
   " file and directory
   Plug 'b4b4r07/vim-shellutils'
   Plug 'b4b4r07/mru.vim'
-  Plug 'junegunn/fzf', {
-        \ 'do':     './install --bin',
-        \ 'frozen': 0
-        \ }
+  "Plug 'junegunn/fzf', {
+  "      \ 'do':     './install --bin',
+  "      \ 'frozen': 0
+  "      \ }
+  Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
+  "Plug 'kien/ctrlp.vim'
+  "Plug 'pbogut/fzf-mru.vim'
+  "Plug 'lvht/fzf-mru'
+  Plug 'Shougo/unite.vim'
+  Plug 'b4b4r07/enhancd', { 'tag': '2.2.1' }
   Plug 'justinmk/vim-dirvish'
+  Plug 'tweekmonster/fzf-filemru'
+  nnoremap <c-p> :FilesMru --tiebreak=end<cr>
+  let g:enhancd_action = 'Dirvish'
 
   " tpope
   Plug 'tpope/vim-surround'

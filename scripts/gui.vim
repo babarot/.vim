@@ -1,11 +1,11 @@
-if g:env.is_tmux_running
-  augroup titlesettings
-    autocmd!
-    autocmd BufEnter * call system("tmux rename-window " . "'[vim] " . expand("%:t") . "'")
-    autocmd VimLeave * call system("tmux rename-window ".g:env.tmux_proc)
-    autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
-  augroup END
-endif
+"if g:env.is_tmux_running
+"  augroup titlesettings
+"    autocmd!
+"    autocmd BufEnter * call system("tmux rename-window " . "'[vim] " . expand("%:t") . "'")
+"    autocmd VimLeave * call system("tmux rename-window ".g:env.tmux_proc)
+"    autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
+"  augroup END
+"endif
 
 augroup MyAutoCmd
     autocmd!

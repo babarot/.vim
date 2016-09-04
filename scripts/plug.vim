@@ -26,8 +26,9 @@ if g:p.ready() && g:vimrc_plugin_on
   "Plug 'pbogut/fzf-mru.vim'
   "Plug 'lvht/fzf-mru'
   Plug 'Shougo/unite.vim'
-  Plug 'b4b4r07/enhancd', { 'tag': '2.2.1' }
+  "Plug 'b4b4r07/enhancd', { 'tag': '2.2.1' }
   Plug 'justinmk/vim-dirvish'
+  Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
   Plug 'tweekmonster/fzf-filemru'
   nnoremap <c-p> :FilesMru --tiebreak=end<cr>
   let g:enhancd_action = 'Dirvish'

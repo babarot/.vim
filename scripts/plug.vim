@@ -55,6 +55,17 @@ if g:p.ready() && g:vimrc_plugin_on
   Plug 'osyo-manga/vim-anzu'
   Plug 'tyru/caw.vim'
   Plug 'AndrewRadev/gapply.vim'
+  Plug 'thinca/vim-quickrun'
+  Plug 'mattn/vim-terminal'
+  Plug 'mhinz/vim-grepper'
+let g:grepper = {
+    \ 'tools': ['ag', 'git'],
+    \ 'open':  0,
+    \ 'jump':  0,
+    \ 'switch': 0,
+    \ 'prompt': 1,
+    \ 'highlight': 1,
+    \ }
 
   " syntax? language support
   Plug 'cespare/vim-toml',    { 'for': 'toml' }
@@ -75,6 +86,8 @@ if g:p.ready() && g:vimrc_plugin_on
   
   Plug 'thinca/vim-prettyprint', { 'on': 'PP' }
   Plug 'rhysd/github-complete.vim'
+
+  Plug 'b4b4r07/vim-shell-with-tmux', { 'on': 'Sh' }
 
   " Add plugins to &runtimepath
   call plug#end()

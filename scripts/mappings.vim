@@ -183,7 +183,7 @@ nnoremap <silent> [Space]. :call <SID>recycle_open('edit', $MYVIMRC)<CR>
 nnoremap <silent> [Space]e  :<C-u>call <SID>make_junkfile()<CR>
 
 " Easy typing tilda insted of backslash
-cnoremap <expr> <Bslash> HomedirOrBackslash()
+"cnoremap <expr> <Bslash> HomedirOrBackslash()
 
 " Swap semicolon for colon {{{1
 nnoremap ; :

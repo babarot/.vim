@@ -88,6 +88,10 @@ let g:grepper = {
   Plug 'rhysd/github-complete.vim'
 
   Plug 'b4b4r07/vim-shell-with-tmux', { 'on': 'Sh' }
+  Plug 'zplug/vim-zplug', { 'for': 'zplug' }
+  Plug 'tyru/open-browser.vim'
+  Plug 'tyru/open-browser-github.vim'
+  Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 
   " Add plugins to &runtimepath
   call plug#end()

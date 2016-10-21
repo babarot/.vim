@@ -16,21 +16,15 @@ if g:p.ready() && g:vimrc_plugin_on
   " file and directory
   Plug 'b4b4r07/vim-shellutils'
   Plug 'b4b4r07/mru.vim'
-  "Plug 'junegunn/fzf', {
-  "      \ 'do':     './install --bin',
-  "      \ 'frozen': 0
-  "      \ }
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
-  "Plug 'kien/ctrlp.vim'
-  "Plug 'pbogut/fzf-mru.vim'
-  "Plug 'lvht/fzf-mru'
-  Plug 'Shougo/unite.vim'
   Plug 'b4b4r07/enhancd', { 'tag': '2.2.1' }
-  Plug 'justinmk/vim-dirvish'
-  Plug 'tweekmonster/fzf-filemru'
   nnoremap <c-p> :FilesMru --tiebreak=end<cr>
   let g:enhancd_action = 'Dirvish'
+  let g:enhancd_action = 'Ex'
+
+  Plug 'justinmk/vim-dirvish'
+  Plug 'tweekmonster/fzf-filemru'
 
   " tpope
   Plug 'tpope/vim-surround'
@@ -38,14 +32,7 @@ if g:p.ready() && g:vimrc_plugin_on
 
   " compl
   Plug has('lua') ? 'Shougo/neocomplete.vim' : 'Shougo/neocomplcache'
-  Plug 'junegunn/vim-emoji'
-  Plug 'rhysd/github-complete.vim'
-  Plug 'ujihisa/neco-look'
 
-  Plug 'lambdalisue/vim-gita'
-  Plug 'tpope/vim-fugitive' | Plug 'idanarye/vim-merginal'
-
-  " useful
   if g:env.is_gui
     Plug 'itchyny/lightline.vim'
   endif
@@ -56,14 +43,18 @@ if g:p.ready() && g:vimrc_plugin_on
   Plug 'AndrewRadev/gapply.vim'
 
   " syntax? language support
-  Plug 'cespare/vim-toml',    { 'for': 'toml' }
-  Plug 'elzr/vim-json',       { 'for': 'json' }
-  Plug 'fatih/vim-go',        { 'for': 'go'   }
-  Plug 'jnwhiteh/vim-golang', { 'for': 'go'   }
-  "Plug 'zaiste/tmux.vim',     { 'for': 'tmux' }
-  Plug 'keith/tmux.vim',      { 'for': 'tmux' }
-  Plug 'dag/vim-fish',        { 'for': 'fish' }
+  Plug 'fatih/vim-go', { 'for': 'go' }
+  Plug 'jnwhiteh/vim-golang', { 'for': 'go' }
+  "Plug 'zaiste/tmux.vim', { 'for': 'tmux' }
+  Plug 'keith/tmux.vim', { 'for': 'tmux' }
+  Plug 'dag/vim-fish', { 'for': 'fish' }
+  Plug 'zplug/vim-zplug', { 'for': 'zplug' }
   Plug 'chase/vim-ansible-yaml'
+  Plug 'cespare/vim-toml', { 'for': 'toml' }
+  Plug 'elzr/vim-json', { 'for': 'json' }
+  Plug 'b4b4r07/vim-ltsv', { 'for': 'ltsv' }
+  Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+  Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 
   " colorscheme
   Plug 'b4b4r07/solarized.vim'
@@ -73,7 +64,9 @@ if g:p.ready() && g:vimrc_plugin_on
   Plug 'whatyouhide/vim-gotham'
   
   Plug 'thinca/vim-prettyprint', { 'on': 'PP' }
+
   Plug 'rhysd/github-complete.vim'
+  Plug 'junegunn/vim-emoji'
 
   " Add plugins to &runtimepath
   call plug#end()

@@ -18,17 +18,19 @@ if g:p.ready() && g:vimrc_plugin_on
   Plug 'b4b4r07/mru.vim'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
-  Plug 'b4b4r07/enhancd', { 'tag': '2.2.1' }
-  nnoremap <c-p> :FilesMru --tiebreak=end<cr>
-  let g:enhancd_action = 'Dirvish'
-  let g:enhancd_action = 'Ex'
-
   Plug 'justinmk/vim-dirvish'
   Plug 'tweekmonster/fzf-filemru'
-
-  " tpope
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-endwise'
+  Plug 'b4b4r07/enhancd', { 'tag': '2.2.1' }
+  "Plug 'kien/ctrlp.vim'
+  "Plug 'pbogut/fzf-mru.vim'
+  "Plug 'lvht/fzf-mru'
+  "Plug 'Shougo/unite.vim'
+  "Plug 'b4b4r07/enhancd', { 'tag': '2.2.1' }
+  "nnoremap <c-p> :FilesMru --tiebreak=end<cr>
+  "let g:enhancd_action = 'Dirvish'
+  "let g:enhancd_action = 'Ex'
 
   " compl
   Plug has('lua') ? 'Shougo/neocomplete.vim' : 'Shougo/neocomplcache'
@@ -41,6 +43,17 @@ if g:p.ready() && g:vimrc_plugin_on
   Plug 'osyo-manga/vim-anzu'
   Plug 'tyru/caw.vim'
   Plug 'AndrewRadev/gapply.vim'
+  Plug 'thinca/vim-quickrun'
+  Plug 'mattn/vim-terminal'
+  Plug 'mhinz/vim-grepper'
+let g:grepper = {
+    \ 'tools': ['ag', 'git'],
+    \ 'open':  0,
+    \ 'jump':  0,
+    \ 'switch': 0,
+    \ 'prompt': 1,
+    \ 'highlight': 1,
+    \ }
 
   " syntax? language support
   Plug 'fatih/vim-go', { 'for': 'go' }
@@ -50,6 +63,7 @@ if g:p.ready() && g:vimrc_plugin_on
   Plug 'dag/vim-fish', { 'for': 'fish' }
   Plug 'zplug/vim-zplug', { 'for': 'zplug' }
   Plug 'chase/vim-ansible-yaml'
+  Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
   Plug 'cespare/vim-toml', { 'for': 'toml' }
   Plug 'elzr/vim-json', { 'for': 'json' }
   Plug 'b4b4r07/vim-ltsv', { 'for': 'ltsv' }
@@ -67,6 +81,12 @@ if g:p.ready() && g:vimrc_plugin_on
 
   Plug 'rhysd/github-complete.vim'
   Plug 'junegunn/vim-emoji'
+
+  Plug 'b4b4r07/vim-shell-with-tmux', { 'on': 'Sh' }
+  Plug 'zplug/vim-zplug', { 'for': 'zplug' }
+  Plug 'tyru/open-browser.vim'
+  Plug 'tyru/open-browser-github.vim'
+  Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 
   " Add plugins to &runtimepath
   call plug#end()

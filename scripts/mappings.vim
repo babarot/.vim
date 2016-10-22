@@ -145,22 +145,6 @@ if !g:plug.is_installed('mru.vim')
   endif
 endif
 
-" Kill buffer
-if !g:plug.is_installed('vim-buftabs')
-  nnoremap <silent> <C-x>k     :<C-u>call <SID>smart_bwipeout(0)<CR>
-  nnoremap <silent> <C-x>K     :<C-u>call <SID>smart_bwipeout(1)<CR>
-  nnoremap <silent> <C-x><C-k> :<C-u>call <SID>smart_bwipeout(2)<CR>
-else
-  "autocmd BufUnload,BufLeave,BufDelete,BufWipeout * call <SID>get_buflists()
-
-  nnoremap <silent> <C-x>k     :<C-u>call <SID>smart_bwipeout(0)<CR>
-  nnoremap <silent> <C-x>K     :<C-u>call <SID>smart_bwipeout(1)<CR>
-  nnoremap <silent> <C-x><C-k> :<C-u>call <SID>smart_bwipeout(2)<CR>
-  "nnoremap <silent> <C-x>k     :<C-u>silent call <SID>smart_bwipeout(0)<CR>:<C-u>call <SID>get_buflists()<CR>
-  "nnoremap <silent> <C-x>K     :<C-u>silent call <SID>smart_bwipeout(1)<CR>:<C-u>call <SID>get_buflists()<CR>
-  "nnoremap <silent> <C-x><C-k> :<C-u>silent call <SID>smart_bwipeout(2)<CR>:<C-u>call <SID>get_buflists()<CR>
-endif
-
 " Restore buffers
 nnoremap <silent> <C-x>u :<C-u>call <SID>buf_restore()<CR>
 

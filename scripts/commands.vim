@@ -30,5 +30,8 @@ command! -bang -complete=file -nargs=? WUnix write<bang> ++fileformat=unix <args
 command! -bang -complete=file -nargs=? WDos  write<bang> ++fileformat=dos <args>  | edit <args>
 command! -bang -complete=file -nargs=? WMac  write<bang> ++fileformat=mac <args>  | edit <args>
 
+" Make random string such as password
+command! -nargs=? Random echo Random(<q-args>)
+
 " __END__ {{{1
 " vim:fdm=marker expandtab fdc=3:

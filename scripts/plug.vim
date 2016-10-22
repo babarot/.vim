@@ -41,6 +41,10 @@ if g:plug.ready() && g:env.vimrc.plugin_on
   Plug 'tyru/open-browser.vim'
   Plug 'tyru/open-browser-github.vim'
   Plug 'kien/ctrlp.vim'
+
+  Plug 'b4b4r07/vim-hcl'
+  Plug 'fatih/vim-hclfmt'
+
   "Plug 'pbogut/fzf-mru.vim'
   "Plug 'lvht/fzf-mru'
   "nnoremap <c-p> :FilesMru --tiebreak=end<cr>

@@ -1,19 +1,19 @@
 if !exists('g:env')
-  finish
+    finish
 endif
 
 " Load dein.
 let s:dein_dir = finddir('dein.vim', '.;')
 if s:dein_dir != '' || &runtimepath !~ '/dein.vim'
-  if s:dein_dir == '' && &runtimepath !~ '/dein.vim'
-    let s:dein_dir = expand('$HOME/.dein')
-          \. '/repos/github.com/Shougo/dein.vim'
-    if !isdirectory(s:dein_dir)
-      execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
+    if s:dein_dir == '' && &runtimepath !~ '/dein.vim'
+        let s:dein_dir = expand('$HOME/.dein')
+                    \. '/repos/github.com/Shougo/dein.vim'
+        if !isdirectory(s:dein_dir)
+            execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
+        endif
     endif
-  endif
-  execute ' set runtimepath^=' . substitute(
-        \ fnamemodify(s:dein_dir, ':p') , '/$', '', '')
+    execute ' set runtimepath^=' . substitute(
+                \ fnamemodify(s:dein_dir, ':p') , '/$', '', '')
 endif
 
 " dein configurations.
@@ -25,11 +25,11 @@ let g:dein#notification_icon = '~/.vim/signs/warn.png'
 
 let s:path = expand('$HOME/.dein')
 if !dein#load_state(s:path)
-  finish
+    finish
 endif
 
 call dein#begin(s:path, [expand('<sfile>')]
-      \ + split(glob('~/.vim/scripts/*.toml'), '\n'))
+            \ + split(glob('~/.vim/scripts/*.toml'), '\n'))
 
 call dein#load_toml(
             \ '~/.vim/scripts/dein.toml',
@@ -65,6 +65,6 @@ call dein#end()
 call dein#save_state()
 
 if dein#check_install()
-  " Installation check.
-  call dein#install()
+    " Installation check.
+    call dein#install()
 endif

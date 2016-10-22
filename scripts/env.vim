@@ -28,8 +28,9 @@ function! s:vimrc_environment()
         \ }
 
   let env.bin = {
-        \ 'ag':        executable('ag'),
+        \ 'ag': executable('ag'),
         \ 'osascript': executable('osascript'),
+        \ 'open': executable('open'),
         \ }
 
   " tmux

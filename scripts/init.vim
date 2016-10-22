@@ -37,7 +37,7 @@ endfunction
 
 function! s:load(...) abort
   let base = expand($HOME.'/.vim/scripts')
-  let found = g:false
+  let found = g:true
 
   if len(a:000) > 0
     " Stop to load
@@ -56,52 +56,57 @@ function! s:load(...) abort
 
   return found
 endfunction
+"}}}
 
-" Init "{{{1
+" Init
+if !s:load('env.vim')
+  " Finish if loading env.vim is failed
+  finish
+endif
 
-if s:load('env.vim')
-  let g:env.vimrc.plugin_on = g:true
-  let g:env.vimrc.manage_rtp_manually = g:false
-  let g:env.vimrc.plugin_on = g:env.vimrc.manage_rtp_manually == g:true ? g:false : g:env.vimrc.plugin_on
+let g:env.vimrc.plugin_on = g:true
+let g:env.vimrc.manage_rtp_manually = g:false
+let g:env.vimrc.plugin_on = g:env.vimrc.manage_rtp_manually == g:true ? g:false : g:env.vimrc.plugin_on
 
-  if g:env.is_starting
-    " Necesary for lots of cool vim things
-    "set nocompatible
-    " http://rbtnn.hateblo.jp/entry/2014/11/30/174749
+if g:env.is_starting
+  " Necesary for lots of cool vim things
+  "set nocompatible
+  " http://rbtnn.hateblo.jp/entry/2014/11/30/174749
 
-    scriptencoding utf-8
-    set runtimepath&
+  scriptencoding utf-8
+  set runtimepath&
 
-    " Check if there are plugins not to be installed
-    augroup vimrc-check-plug
-      autocmd!
-      if g:env.vimrc.check_plug_update == g:true
-        autocmd VimEnter * if !argc() | call g:plug.check_installation() | endif
-      endif
-    augroup END
-
-    " Vim starting time
-    if has('reltime')
-      let g:startuptime = reltime()
-      augroup vimrc-startuptime
-        autocmd!
-        autocmd VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
-              \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
-      augroup END
+  " Check if there are plugins not to be installed
+  augroup vimrc-check-plug
+    autocmd!
+    if g:env.vimrc.check_plug_update == g:true
+      autocmd VimEnter * if !argc() | call g:plug.check_installation() | endif
     endif
+  augroup END
+
+  " Vim starting time
+  if has('reltime')
+    let g:startuptime = reltime()
+    augroup vimrc-startuptime
+      autocmd!
+      autocmd VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
+            \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
+    augroup END
   endif
 endif
 
 call s:load('plug.vim')
 call s:load('dein.vim', g:false)
-call s:load('functions.vim')
-call s:load('options.vim')
+call s:load('func.vim')
+call s:load('misc.vim')
 call s:load('appearance.vim')
 call s:load('mappings.vim')
 call s:load('commands.vim')
-call s:load('plugins.vim')
+call s:load('custom.vim')
 call s:load('gui.vim')
-call s:load('func.vim')
+call s:load('utils.vim')
+call s:load('options.vim')
+call s:load('_.vim')
 
 " Must be written at the last.  see :help 'secure'.
 set secure

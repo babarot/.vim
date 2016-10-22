@@ -31,6 +31,8 @@ function! s:vimrc_environment()
         \ 'ag': executable('ag'),
         \ 'osascript': executable('osascript'),
         \ 'open': executable('open'),
+        \ 'chmod': executable('chmod'),
+        \ 'qlmanage': executable('qlmanage'),
         \ }
 
   " tmux

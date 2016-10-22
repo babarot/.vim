@@ -212,42 +212,6 @@ endfunction
 "nnoremap <silent> <C-l> :<C-u>call <SID>win_tab_switcher('l')<CR>
 "nnoremap <silent> <C-h> :<C-u>call <SID>win_tab_switcher('h')<CR>
 
-" Restore cursor position {{{1
-if g:env.vimrc.restore_cursor_position == g:true
-  function! s:restore_cursor_postion()
-    if line("'\"") <= line("$")
-      normal! g`"
-      return 1
-    endif
-  endfunction
-  augroup restore-cursor-position
-    autocmd!
-    autocmd BufWinEnter * call <SID>restore_cursor_postion()
-  augroup END
-endif
-
-" Backup automatically {{{1
-if IsWindows()
-  set nobackup
-else
-  set backup
-  call Mkdir('~/.vim/backup')
-  augroup backup-files-automatically
-    autocmd!
-    autocmd BufWritePre * call s:backup_files()
-  augroup END
-
-  function! s:backup_files()
-    let dir = strftime("~/.backup/vim/%Y/%m/%d", localtime())
-    if !isdirectory(dir)
-      call system("mkdir -p " . dir)
-      call system("chown goth:staff " . dir)
-    endif
-    execute "set backupdir=" . dir
-    execute "set backupext=." . strftime("%H_%M_%S", localtime())
-  endfunction
-endif
-
 function! s:get_buflists(...) "{{{1
   if a:0 && a:1 ==# 'n'
     silent bnext
@@ -352,7 +316,7 @@ function! s:buf_delete(bang) "{{{1
           execute "bwipeout" bufname
         endif
         echo "Deleted '" . file . "', successfully!"
-        return s:true
+        return g:true
       endif
       "echo "Could not delete '" . file . "'"
       return Error("Could not delete '" . file . "'")
@@ -448,7 +412,7 @@ function! s:rename(new, type) "{{{1
     if nr2char(getchar()) ==? 'y'
       silent call delete(new)
     else
-      return s:false
+      return g:false
     endif
   endif
 
@@ -629,6 +593,107 @@ endfunction
 
 nnoremap <silent> <C-l> :<C-u>call <SID>win_tab_switcher('l')<CR>
 nnoremap <silent> <C-h> :<C-u>call <SID>win_tab_switcher('h')<CR>
+
+" Add execute permission {{{1
+if g:env.vimrc.add_execute_perm == g:true
+  if g:env.bin.chmod
+    augroup auto-add-executable
+      autocmd!
+      autocmd BufWritePost * call <SID>add_permission_x()
+    augroup END
+
+    function! s:add_permission_x()
+      let file = expand('%:p')
+      if !executable(file)
+        if getline(1) =~# '^#!'
+              \ || &filetype =~ "\\(z\\|c\\|ba\\)\\?sh$"
+              \ && input(printf('"%s" is not perm 755. Change mode? [y/N] ', expand('%:t'))) =~? '^y\%[es]$'
+          call system("chmod 755 " . shellescape(file))
+          redraw | echo "Set permission 755!"
+        endif
+      endif
+    endfunction
+  endif
+endif
+
+" Backup automatically {{{1
+if IsWindows()
+  set nobackup
+else
+  set backup
+  call Mkdir('~/.vim/backup')
+  augroup backup-files-automatically
+    autocmd!
+    autocmd BufWritePre * call s:backup_files()
+  augroup END
+
+  function! s:backup_files()
+    let dir = strftime("~/.backup/vim/%Y/%m/%d", localtime())
+    if !isdirectory(dir)
+      call system("mkdir -p " . dir)
+      call system("chown goth:staff " . dir)
+    endif
+    execute "set backupdir=" . dir
+    execute "set backupext=." . strftime("%H_%M_%S", localtime())
+  endfunction
+endif
+
+" Restore cursor position {{{1
+if g:env.vimrc.restore_cursor_position == g:true
+  function! s:restore_cursor_postion()
+    if line("'\"") <= line("$")
+      normal! g`"
+      return 1
+    endif
+  endfunction
+  augroup restore-cursor-position
+    autocmd!
+    autocmd BufWinEnter * call <SID>restore_cursor_postion()
+  augroup END
+endif
+
+" Restore the buffer that has been deleted {{{1
+let s:bufqueue = []
+augroup buffer-queue-restore
+  autocmd!
+  autocmd BufDelete * call <SID>buf_enqueue(expand('#'))
+augroup END
+
+" Automatically get buffer list {{{1
+if !g:plug.is_installed('vim-buftabs')
+  augroup bufenter-get-buffer-list
+    autocmd!
+    " Escape getting buflist by "@% != ''" when "VimEnter"
+    autocmd BufEnter,BufAdd,BufWinEnter * if @% != '' | call <SID>get_buflists() | endif
+  augroup END
+endif
+
+" Automatically cd parent directory when opening the file {{{1
+function! s:cd_file_parentdir()
+  execute ":lcd " . expand("%:p:h")
+endfunction
+command! Cdcd call <SID>cd_file_parentdir()
+nnoremap Q :<C-u>call <SID>cd_file_parentdir()<CR>
+
+if g:env.vimrc.auto_cd_file_parentdir == g:true
+  augroup cd-file-parentdir
+    autocmd!
+    autocmd BufRead,BufEnter * call <SID>cd_file_parentdir()
+  augroup END
+endif
+
+" QuickLook for mac {{{1
+if IsMac() && !g:env.bin.qlmanage
+  command! -nargs=? -complete=file QuickLook call s:quicklook(<f-args>)
+  function! s:quicklook(...)
+    let file = a:0 ? expand(a:1) : expand('%:p')
+    if !s:has(file)
+      echo printf('%s: No such file or directory', file)
+      return 0
+    endif
+    call system(printf('qlmanage -p %s >& /dev/null', shellescape(file)))
+  endfunction
+endif
 
 " __END__ {{{1
 " vim:fdm=marker expandtab fdc=3:

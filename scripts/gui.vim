@@ -15,7 +15,7 @@ autocmd GUIEnter * call s:gui()
 
 function! s:gui()
   "colorscheme solarized
-  set background=light
+  "set background=light
   syntax enable
 
   " Tabpages

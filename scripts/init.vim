@@ -66,7 +66,10 @@ endif
 
 let g:env.vimrc.plugin_on = g:true
 let g:env.vimrc.manage_rtp_manually = g:false
-let g:env.vimrc.plugin_on = g:env.vimrc.manage_rtp_manually == g:true ? g:false : g:env.vimrc.plugin_on
+let g:env.vimrc.plugin_on = 
+      \ g:env.vimrc.manage_rtp_manually == g:true
+      \ ? g:false
+      \ : g:env.vimrc.plugin_on
 
 if g:env.is_starting
   " Necesary for lots of cool vim things
@@ -94,16 +97,17 @@ if g:env.is_starting
   endif
 endif
 
-call s:load('plug.vim')
+if s:load('plug.vim')
+  call s:load('custom.vim')
+endif
 call s:load('dein.vim', g:false)
 call s:load('base.vim')
-call s:load('appearance.vim')
+call s:load('view.vim')
 call s:load('map.vim')
-call s:load('commands.vim')
-call s:load('custom.vim')
-call s:load('gui.vim')
+call s:load('command.vim')
 call s:load('utils.vim')
-call s:load('options.vim')
+call s:load('option.vim')
+call s:load('gui.vim', g:env.is_gui)
 
 " Must be written at the last.  see :help 'secure'.
 set secure

@@ -87,8 +87,10 @@ if !g:plug.ready()
     endif
 
     " Restart vim
-    silent! !vim
-    quit!
+    if !g:env.is_gui
+      silent! !vim
+      quit!
+    endif
   endfunction
   command! PlugInit call g:plug.init()
 
@@ -167,8 +169,10 @@ function! g:plug.check_installation()
       " Close window for vim-plug
       silent! close
       " Restart vim
-      silent! !vim
-      quit!
+      if !g:env.is_gui
+        silent! !vim
+        quit!
+      endif
     endif
   endif
 endfunction

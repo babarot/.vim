@@ -9,7 +9,7 @@ function! g:plug.ready()
   return filereadable(self.plug)
 endfunction
 
-if g:plug.ready() && g:vimrc_plugin_on
+if g:plug.ready() && g:env.vimrc.plugin_on
   " start to manage with vim-plug
   call plug#begin(g:plug.base)
 
@@ -36,11 +36,9 @@ if g:plug.ready() && g:vimrc_plugin_on
   Plug 'b4b4r07/vim-shell-with-tmux', { 'on': 'Sh' }
   Plug 'tyru/open-browser.vim'
   Plug 'tyru/open-browser-github.vim'
-  "Plug 'kien/ctrlp.vim'
+  Plug 'kien/ctrlp.vim'
   "Plug 'pbogut/fzf-mru.vim'
   "Plug 'lvht/fzf-mru'
-  "Plug 'Shougo/unite.vim'
-  "Plug 'b4b4r07/enhancd', { 'tag': '2.2.1' }
   "nnoremap <c-p> :FilesMru --tiebreak=end<cr>
   "let g:enhancd_action = 'Dirvish'
   "let g:enhancd_action = 'Ex'
@@ -100,7 +98,7 @@ if !g:plug.ready()
   endfunction
   command! PlugInit call g:plug.init()
 
-  if g:vimrc_suggest_neobundleinit == g:true
+  if g:env.vimrc.suggest_neobundleinit == g:true
     autocmd! VimEnter * redraw
           \ | echohl WarningMsg
           \ | echo "You should do ':PlugInit' at first!"
@@ -182,7 +180,7 @@ function! g:plug.check_installation()
   endif
 endfunction
 
-if g:plug.ready() && g:vimrc_plugin_on
+if g:plug.ready() && g:env.vimrc.plugin_on
   function! PlugList(A,L,P)
     return join(g:plug.list, "\n")
   endfunction

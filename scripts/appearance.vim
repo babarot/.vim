@@ -40,7 +40,7 @@ function! MakeStatusLine()
   let line .= ' %l/%LL %2vC'
   let line .= ' %3p%%'
 
-  if g:vimrc_statusline_manually == g:true
+  if g:env.vimrc.statusline_manually == g:true
     return line
   else
     return ''
@@ -48,7 +48,7 @@ function! MakeStatusLine()
 endfunction
 
 function! MakeBigStatusLine()
-  if g:vimrc_statusline_manually == g:true
+  if g:env.vimrc.statusline_manually == g:true
     set statusline=
     set statusline+=%#BlackWhite#
     set statusline+=[%n]:
@@ -87,7 +87,7 @@ endfunction
 
 if !g:plug.is_installed('lightline.vim')
   call MakeBigStatusLine()
-  if g:vimrc_statusline_manually == g:true
+  if g:env.vimrc.statusline_manually == g:true
     " Refresh Manually StatusLine
     augroup automatically-statusline
       autocmd!

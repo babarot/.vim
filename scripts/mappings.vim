@@ -211,7 +211,7 @@ nnoremap gk k
 vnoremap gj j
 vnoremap gk k
 
-if g:vimrc_goback_to_eof2bof == g:true
+if g:env.vimrc.goback_to_eof2bof == g:true
   function! s:up(key)
     if line(".") == 1
       return ":call cursor(line('$'), col('.'))\<CR>"

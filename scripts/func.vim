@@ -39,10 +39,10 @@ augroup END
 "endfunction
 "command! Cdcd call <SID>cd_file_parentdir()
 "
-""if g:vimrc_auto_cd_file_parentdir == g:true
+""if g:env.vimrc.auto_cd_file_parentdir == g:true
 "augroup cd-file-parentdir
 "  autocmd!
-"  autocmd BufRead,BufEnter * if g:vimrc_auto_cd_file_parentdir == g:true | call <SID>cd_file_parentdir() | endif
+"  autocmd BufRead,BufEnter * if g:env.vimrc.auto_cd_file_parentdir == g:true | call <SID>cd_file_parentdir() | endif
 "augroup END
 ""endif
 
@@ -59,7 +59,7 @@ function! s:change_current_dir(directory, bang)
     endif
 endfunction
 
-if g:vimrc_auto_cd_file_parentdir == g:true
+if g:env.vimrc.auto_cd_file_parentdir == g:true
     augroup cd-file-parentdir
         autocmd!
         autocmd BufEnter * call <SID>change_current_dir('', '!')
@@ -271,7 +271,7 @@ endfunction
 command! Root call <SID>root()
 
 " Restore cursor position {{{1
-if g:vimrc_restore_cursor_position == g:true
+if g:env.vimrc.restore_cursor_position == g:true
   function! s:restore_cursor_postion()
     if line("'\"") <= line("$")
       normal! g`"

@@ -10,7 +10,7 @@ if g:plug.is_installed("fzf.vim") && g:plug.is_installed("fzf")
         \ 'ctrl-v': 'tab split' }
 
   function! s:search_with_ag_under_cursor()
-    let g:vimrc_auto_cd_file_parentdir = g:false
+    let g:env.vimrc.auto_cd_file_parentdir = g:false
     let cwd = expand('%:p:h')
     silent! call s:root()
 
@@ -23,7 +23,7 @@ if g:plug.is_installed("fzf.vim") && g:plug.is_installed("fzf")
           \ })
     "execute 'lcd' cwd
     execute 'lcd' expand('%:p:h')
-    let g:vimrc_auto_cd_file_parentdir = g:true
+    let g:env.vimrc.auto_cd_file_parentdir = g:true
   endfunction
   nnoremap <silent> K :call <SID>search_with_ag_under_cursor()<CR>
 
@@ -58,7 +58,7 @@ if g:plug.is_installed("fzf.vim")
         \ 'ctrl-v': 'tab split' }
 
   function! s:search_with_ag_under_cursor()
-    let g:vimrc_auto_cd_file_parentdir = g:false
+    let g:env.vimrc.auto_cd_file_parentdir = g:false
     let cwd = expand('%:p:h')
     silent! call s:root()
 
@@ -71,7 +71,7 @@ if g:plug.is_installed("fzf.vim")
           \ })
     "execute 'lcd' cwd
     execute 'lcd' expand('%:p:h')
-    let g:vimrc_auto_cd_file_parentdir = g:true
+    let g:env.vimrc.auto_cd_file_parentdir = g:true
   endfunction
   nnoremap <silent> K :call <SID>search_with_ag_under_cursor()<CR>
 

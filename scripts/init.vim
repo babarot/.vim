@@ -29,7 +29,9 @@ augroup END
 
 call s:load('env.vim')
 
-let g:vimrc_plugin_on = true
+let g:env.vimrc.plugin_on = g:true
+let g:env.vimrc.manage_rtp_manually = g:false
+let g:env.vimrc.plugin_on = g:env.vimrc.manage_rtp_manually == g:true ? g:false : g:env.vimrc.plugin_on
 
 if g:env.is_starting
   " Necesary for lots of cool vim things
@@ -44,7 +46,7 @@ if g:env.is_starting
   " Check if there are plugins not to be installed
   augroup vimrc-check-plug
     autocmd!
-    if g:vimrc_check_plug_update == g:true
+    if g:env.vimrc.check_plug_update == g:true
       autocmd VimEnter * if !argc() | call g:plug.check_installation() | endif
     endif
   augroup END

@@ -29,6 +29,8 @@ augroup END
 
 call s:load('env.vim')
 
+let g:vimrc_plugin_on = true
+
 if g:env.is_starting
   " Necesary for lots of cool vim things
   "set nocompatible
@@ -43,12 +45,12 @@ if g:env.is_starting
   augroup vimrc-check-plug
     autocmd!
     if g:vimrc_check_plug_update == g:true
-      autocmd VimEnter * if !argc() | call g:p.check_installation() | endif
+      autocmd VimEnter * if !argc() | call g:plug.check_installation() | endif
     endif
   augroup END
 
   " Vim starting time
-  if has('reltime') "&& !exists('g:pluginit')
+  if has('reltime') "&& !exists('g:plug.uginit')
     let g:startuptime = reltime()
     augroup vimrc-startuptime
       autocmd!

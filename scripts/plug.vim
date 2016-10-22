@@ -1,17 +1,17 @@
-let g:p = {
+let g:plug = {
             \ "plug":   expand(g:env.path.vim) . "/autoload/plug.vim",
             \ "base":   expand(g:env.path.vim) . "/plugged",
             \ "url":    "https://raw.github.com/junegunn/vim-plug/master/plug.vim",
             \ "github": "https://github.com/junegunn/vim-plug",
             \ }
 
-function! g:p.ready()
+function! g:plug.ready()
   return filereadable(self.plug)
 endfunction
 
-if g:p.ready() && g:vimrc_plugin_on
+if g:plug.ready() && g:vimrc_plugin_on
   " start to manage with vim-plug
-  call plug#begin(g:p.base)
+  call plug#begin(g:plug.base)
 
   " file and directory
   Plug 'b4b4r07/vim-shellutils'
@@ -23,6 +23,19 @@ if g:p.ready() && g:vimrc_plugin_on
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-endwise'
   Plug 'b4b4r07/enhancd', { 'tag': '2.2.1' }
+  Plug 'Shougo/vimproc.vim',  { 'do': 'make' }
+  Plug 'vim-jp/vimdoc-ja'
+  Plug 'osyo-manga/vim-anzu'
+  Plug 'tyru/caw.vim'
+  Plug 'AndrewRadev/gapply.vim'
+  Plug 'thinca/vim-quickrun'
+  Plug 'mattn/vim-terminal'
+  Plug 'thinca/vim-prettyprint', { 'on': 'PP' }
+  Plug 'rhysd/github-complete.vim'
+  Plug 'junegunn/vim-emoji'
+  Plug 'b4b4r07/vim-shell-with-tmux', { 'on': 'Sh' }
+  Plug 'tyru/open-browser.vim'
+  Plug 'tyru/open-browser-github.vim'
   "Plug 'kien/ctrlp.vim'
   "Plug 'pbogut/fzf-mru.vim'
   "Plug 'lvht/fzf-mru'
@@ -38,22 +51,6 @@ if g:p.ready() && g:vimrc_plugin_on
   if g:env.is_gui
     Plug 'itchyny/lightline.vim'
   endif
-  Plug 'Shougo/vimproc.vim',  { 'do': 'make' }
-  Plug 'vim-jp/vimdoc-ja'
-  Plug 'osyo-manga/vim-anzu'
-  Plug 'tyru/caw.vim'
-  Plug 'AndrewRadev/gapply.vim'
-  Plug 'thinca/vim-quickrun'
-  Plug 'mattn/vim-terminal'
-  Plug 'mhinz/vim-grepper'
-let g:grepper = {
-    \ 'tools': ['ag', 'git'],
-    \ 'open':  0,
-    \ 'jump':  0,
-    \ 'switch': 0,
-    \ 'prompt': 1,
-    \ 'highlight': 1,
-    \ }
 
   " syntax? language support
   Plug 'fatih/vim-go', { 'for': 'go' }
@@ -69,6 +66,8 @@ let g:grepper = {
   Plug 'b4b4r07/vim-ltsv', { 'for': 'ltsv' }
   Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
   Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
+  Plug 'chrisbra/csv.vim', { 'for': 'csv' }
+  Plug 'zplug/vim-zplug', { 'for': 'zplug' }
 
   " colorscheme
   Plug 'b4b4r07/solarized.vim'
@@ -77,40 +76,29 @@ let g:grepper = {
   Plug 'nanotech/jellybeans.vim'
   Plug 'whatyouhide/vim-gotham'
   
-  Plug 'thinca/vim-prettyprint', { 'on': 'PP' }
-
-  Plug 'rhysd/github-complete.vim'
-  Plug 'junegunn/vim-emoji'
-
-  Plug 'b4b4r07/vim-shell-with-tmux', { 'on': 'Sh' }
-  Plug 'zplug/vim-zplug', { 'for': 'zplug' }
-  Plug 'tyru/open-browser.vim'
-  Plug 'tyru/open-browser-github.vim'
-  Plug 'chrisbra/csv.vim', { 'for': 'csv' }
-
   " Add plugins to &runtimepath
   call plug#end()
 endif
 
 " Add plug's plugins
-let g:p.plugs = get(g:, 'plugs', {})
-let g:p.list  = keys(g:p.plugs)
+let g:plug.plugs = get(g:, 'plugs', {})
+let g:plug.list  = keys(g:plug.plugs)
 
-if !g:p.ready()
-  function! g:p.init()
+if !g:plug.ready()
+  function! g:plug.init()
     let ret = system(printf("curl -fLo %s --create-dirs %s", self.plug, self.url))
     "call system(printf("git clone %s", self.github))
     if v:shell_error
-      echomsg 'g:p_init: error occured'
+      echomsg 'g:plug.init: error occured'
       return 1
     endif
 
     " Restart vim
-    "silent! !vim --cmd "let g:pluginit = 1" -c 'echomsg "Run :PlugInstall"'
+    "silent! !vim --cmd "let g:plug.uginit = 1" -c 'echomsg "Run :PlugInstall"'
     silent! !vim
     quit!
   endfunction
-  command! PlugInit call g:p.init()
+  command! PlugInit call g:plug.init()
 
   if g:vimrc_suggest_neobundleinit == g:true
     autocmd! VimEnter * redraw
@@ -123,7 +111,7 @@ if !g:p.ready()
   endif
 endif
 
-function! g:p.is_installed(strict, ...)
+function! g:plug.is_installed(strict, ...)
   let list = []
   if type(a:strict) != type(0)
         call add(list, a:strict)
@@ -157,15 +145,15 @@ function! g:p.is_installed(strict, ...)
     return g:true
 endfunction
 
-function! g:p.is_rtp(p)
+function! g:plug.is_rtp(p)
     return index(split(&rtp, ","), get(self.plugs[a:p], "dir")) != -1
 endfunction
 
-function! g:p.is_loaded(p)
-    return g:p.is_installed(1, a:p) && g:p.is_rtp(a:p)
+function! g:plug.is_loaded(p)
+    return g:plug.is_installed(1, a:p) && g:plug.is_rtp(a:p)
 endfunction
 
-function! g:p.check_installation()
+function! g:plug.check_installation()
   if empty(self.plugs)
     return
   endif
@@ -194,14 +182,14 @@ function! g:p.check_installation()
   endif
 endfunction
 
-if g:p.ready() && g:vimrc_plugin_on
+if g:plug.ready() && g:vimrc_plugin_on
   function! PlugList(A,L,P)
-    return join(g:p.list, "\n")
+    return join(g:plug.list, "\n")
   endfunction
 
   command! -nargs=1 -complete=custom,PlugList PlugHas
-        \ if g:p.is_installed('<args>')
-        \ | echo g:p.plugs['<args>'].dir
+        \ if g:plug.is_installed('<args>')
+        \ | echo g:plug.plugs['<args>'].dir
         \ | endif
 endif
 

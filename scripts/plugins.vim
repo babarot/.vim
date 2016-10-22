@@ -1,9 +1,9 @@
-if g:p.is_installed('caw') "{{{1
+if g:plug.is_installed('caw') "{{{1
   vmap <C-k> <Plug>(caw:i:toggle)
   vmap K     <Plug>(caw:i:toggle)
 endif
 
-if g:p.is_installed("fzf.vim") && g:p.is_installed("fzf")
+if g:plug.is_installed("fzf.vim") && g:plug.is_installed("fzf")
   let g:fzf_action = {
         \ 'ctrl-t': 'tab split',
         \ 'ctrl-x': 'tab split',
@@ -35,7 +35,7 @@ if g:p.is_installed("fzf.vim") && g:p.is_installed("fzf")
         \ })<CR>
 endif
 
-if g:p.is_installed('anzu') "{{{1
+if g:plug.is_installed('anzu') "{{{1
   nmap n <Plug>(anzu-n)
   nmap N <Plug>(anzu-N)
   nmap * <Plug>(anzu-star)
@@ -51,7 +51,7 @@ if g:p.is_installed('anzu') "{{{1
   augroup END
 endif
 
-if g:p.is_installed("fzf.vim")
+if g:plug.is_installed("fzf.vim")
   let g:fzf_action = {
         \ 'ctrl-t': 'tab split',
         \ 'ctrl-x': 'tab split',
@@ -83,7 +83,7 @@ if g:p.is_installed("fzf.vim")
         \ })<CR>
 endif
 
-if g:p.is_installed('vim-dirvish') "{{{1
+if g:plug.is_installed('vim-dirvish') "{{{1
   " Override netrw
   let g:dirvish_hijack_netrw = 1
 
@@ -109,7 +109,7 @@ if g:p.is_installed('vim-dirvish') "{{{1
   endfunction
 endif
 
-if g:p.is_installed('neocomplete.vim') "{{{1
+if g:plug.is_installed('neocomplete.vim') "{{{1
   let g:neocomplete#enable_at_startup = 1
   let g:neocomplete#enable_smart_case = 1
   let g:neocomplete#enable_camel_case = 1
@@ -282,7 +282,7 @@ if g:p.is_installed('neocomplete.vim') "{{{1
   let g:neocomplete#fallback_mappings = ["\<C-x>\<C-o>", "\<C-x>\<C-n>"]
 endif
 
-if g:p.is_installed('mru.vim') "{{{1
+if g:plug.is_installed('mru.vim') "{{{1
   let MRU_Auto_Close = 1
   let MRU_Window_Height = 30
   let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'  " For Unix
@@ -514,7 +514,7 @@ else
   augroup END
 
   " MRU within the vimrc
-  "if !g:p.is_installed('mru.vim') 
+  "if !g:plug.is_installed('mru.vim') 
   if exists('*s:MRU_Create_Window')
     nnoremap <silent> [Space]j :<C-u>call <SID>MRU_Create_Window()<CR>
   endif

@@ -8,11 +8,11 @@ else
 endif
 
 set t_Co=256
-if g:p.is_installed('solarized.vim') && $TERM_PROGRAM ==# "Apple_Terminal"
+if g:plug.is_installed('solarized.vim') && $TERM_PROGRAM ==# "Apple_Terminal"
   colorscheme solarized
-elseif g:p.is_installed('seoul256')
+elseif g:plug.is_installed('seoul256')
   colorscheme seoul256
-elseif g:p.is_installed('hybrid')
+elseif g:plug.is_installed('hybrid')
   colorscheme hybrid
 endif
 
@@ -85,7 +85,7 @@ function! MakeBigStatusLine()
   endif
 endfunction
 
-if !g:p.is_installed('lightline.vim')
+if !g:plug.is_installed('lightline.vim')
   call MakeBigStatusLine()
   if g:vimrc_statusline_manually == g:true
     " Refresh Manually StatusLine
@@ -179,7 +179,7 @@ function! GuiTabLabel() "{{{3
 endfunction "}}}
 
 " Emphasize statusline in the insert mode {{{1
-if !g:p.is_installed('lightline.vim')
+if !g:plug.is_installed('lightline.vim')
   augroup colorize-statusline-insert
     autocmd!
     autocmd InsertEnter * call s:colorize_statusline_insert('Enter')

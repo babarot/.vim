@@ -133,7 +133,7 @@ xmap  <Space>   [Space]
 nnoremap  [Space]   <Nop>
 xnoremap  [Space]   <Nop>
 
-if !g:p.is_installed('mru.vim')
+if !g:plug.is_installed('mru.vim')
   "if exists(':MRU2')
   if exists('*s:MRU_Create_Window')
     nnoremap <silent> [Space]j :<C-u>call <SID>MRU_Create_Window()<CR>
@@ -142,7 +142,7 @@ if !g:p.is_installed('mru.vim')
 endif
 
 " Kill buffer
-if !g:p.is_installed('vim-buftabs')
+if !g:plug.is_installed('vim-buftabs')
   nnoremap <silent> <C-x>k     :<C-u>call <SID>smart_bwipeout(0)<CR>
   nnoremap <silent> <C-x>K     :<C-u>call <SID>smart_bwipeout(1)<CR>
   nnoremap <silent> <C-x><C-k> :<C-u>call <SID>smart_bwipeout(2)<CR>
@@ -233,7 +233,7 @@ endif
 " Buffers, windows, and tabpages {{{1
 "nnoremap <silent> <C-j> :<C-u>call <SID>get_buflists('n')<CR>
 "nnoremap <silent> <C-k> :<C-u>call <SID>get_buflists('p')<CR>
-if !g:p.is_installed('vim-buftabs')
+if !g:plug.is_installed('vim-buftabs')
   nnoremap <silent> <C-j> :<C-u>silent bnext<CR>
   nnoremap <silent> <C-k> :<C-u>silent bprev<CR>
 else
@@ -270,7 +270,7 @@ nnoremap <silent> tc :<C-u>tabclose<CR>
 nnoremap <silent> to :<C-u>tabonly<CR>
 
 " Inser matching bracket automatically {{{1
-if !g:p.is_installed('lexima.vim')
+if !g:plug.is_installed('lexima.vim')
   inoremap [ []<LEFT>
   inoremap ( ()<LEFT>
   inoremap " ""<LEFT>

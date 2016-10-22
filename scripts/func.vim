@@ -89,7 +89,7 @@ function! s:get_buflists(...) "{{{1
   endfor
   redraw | echo join(lists, "")
 endfunction
-if g:p.is_installed('vim-buftabs')
+if g:plug.is_installed('vim-buftabs')
   nnoremap <silent> <C-j> :<C-u>silent bnext<CR>
   nnoremap <silent> <C-k> :<C-u>silent bprev<CR>
 else
@@ -248,7 +248,7 @@ function! s:win_tab_switcher(...) "{{{1
     endif
   endif
 
-  if g:p.is_installed("vim-buftabs")
+  if g:plug.is_installed("vim-buftabs")
   else
     redraw
     call <SID>get_buflists()
@@ -462,7 +462,7 @@ function! s:win_tab_switcher(...) "{{{
     endif
   endif
 
-  if g:p.is_installed('vim-buftabs')
+  if g:plug.is_installed('vim-buftabs')
   else
     redraw
     call <SID>get_buflists()

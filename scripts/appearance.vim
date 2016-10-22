@@ -265,17 +265,6 @@ augroup cursor-highlight-emphasis "{{{1
   autocmd CursorHold,CursorHoldI            * hi! link CursorLine Visual     | hi! link CursorColumn Visual
 augroup END
 
-" GUI IME Cursor colors {{{1
-if has('multi_byte_ime') || has('xim')
-  highlight Cursor guibg=NONE guifg=Yellow
-  highlight CursorIM guibg=NONE guifg=Red
-  set iminsert=0 imsearch=0
-  if has('xim') && has('GUI_GTK')
-    ""set imactivatekey=s-space
-  endif
-  inoremap <silent> <ESC><ESC>:set iminsert=0<CR>
-endif
-
 " ZEN-KAKU
 " Display zenkaku-space {{{1
 augroup hilight-idegraphic-space

@@ -70,7 +70,6 @@ let g:env.vimrc.plugin_on = g:env.vimrc.manage_rtp_manually == g:true ? g:false 
 
 if g:env.is_starting
   " Necesary for lots of cool vim things
-  "set nocompatible
   " http://rbtnn.hateblo.jp/entry/2014/11/30/174749
 
   scriptencoding utf-8
@@ -97,16 +96,14 @@ endif
 
 call s:load('plug.vim')
 call s:load('dein.vim', g:false)
-call s:load('func.vim')
-call s:load('misc.vim')
+call s:load('base.vim')
 call s:load('appearance.vim')
-call s:load('mappings.vim')
+call s:load('map.vim')
 call s:load('commands.vim')
 call s:load('custom.vim')
 call s:load('gui.vim')
 call s:load('utils.vim')
 call s:load('options.vim')
-call s:load('_.vim')
 
 " Must be written at the last.  see :help 'secure'.
 set secure

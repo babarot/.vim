@@ -41,7 +41,7 @@ function! s:vimrc_environment()
   let env.vimrc = {
               \ 'plugin_on': g:true,
               \ 'suggest_neobundleinit': g:true,
-              \ 'goback_to_eof2bof': g:true,
+              \ 'goback_to_eof2bof': g:false,
               \ 'save_window_position': g:true,
               \ 'restore_cursor_position': g:true,
               \ 'statusline_manually': g:true,

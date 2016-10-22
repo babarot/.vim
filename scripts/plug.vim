@@ -41,22 +41,10 @@ if g:plug.ready() && g:env.vimrc.plugin_on
   Plug 'tyru/open-browser.vim'
   Plug 'tyru/open-browser-github.vim'
   Plug 'kien/ctrlp.vim'
-
   Plug 'b4b4r07/vim-hcl'
   Plug 'fatih/vim-hclfmt'
-
-  "Plug 'pbogut/fzf-mru.vim'
-  "Plug 'lvht/fzf-mru'
-  "nnoremap <c-p> :FilesMru --tiebreak=end<cr>
-  "let g:enhancd_action = 'Dirvish'
-  "let g:enhancd_action = 'Ex'
-
-  " compl
   Plug has('lua') ? 'Shougo/neocomplete.vim' : 'Shougo/neocomplcache'
-
-  if g:env.is_gui
-    Plug 'itchyny/lightline.vim'
-  endif
+  Plug g:env.is_gui ? 'itchyny/lightline.vim' : ''
 
   " syntax? language support
   Plug 'fatih/vim-go', { 'for': 'go' }
@@ -95,12 +83,10 @@ if !g:plug.ready()
     let ret = system(printf("curl -fLo %s --create-dirs %s", self.plug, self.url))
     "call system(printf("git clone %s", self.github))
     if v:shell_error
-      echomsg 'g:plug.init: error occured'
-      return 1
+      return Error('g:plug.init: error occured')
     endif
 
     " Restart vim
-    "silent! !vim --cmd "let g:plug.uginit = 1" -c 'echomsg "Run :PlugInstall"'
     silent! !vim
     quit!
   endfunction
@@ -184,7 +170,6 @@ function! g:plug.check_installation()
       silent! !vim
       quit!
     endif
-
   endif
 endfunction
 

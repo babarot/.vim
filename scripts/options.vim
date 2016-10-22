@@ -163,6 +163,9 @@ set virtualedit& virtualedit+=block
 " Make it normal in UTF-8 in Unix.
 set encoding=utf-8
 
+set fileencoding=japan
+set fileencodings=utf-8,iso-2022-jp,euc-jp,ucs-2le,ucs-2,cp932
+
 " Select newline character (either or both of CR and LF depending on system) automatically
 " Default fileformat.
 set fileformat=unix
@@ -172,8 +175,6 @@ set fileformats=unix,dos,mac
 if exists('&ambiwidth')
   set ambiwidth=double
 endif
-
-set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
 
 set foldenable
 "set foldmethod=marker

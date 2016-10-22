@@ -2,41 +2,13 @@ if !exists('g:env')
   finish
 endif
 
+if g:plug.is_installed('enhancd') "{{{1
+  let g:enhancd_action = g:plug.is_installed('dirvish') ? 'Dirvish' : 'Ex'
+endif
+
 if g:plug.is_installed('caw') "{{{1
   vmap <C-k> <Plug>(caw:i:toggle)
   vmap K     <Plug>(caw:i:toggle)
-endif
-
-if g:plug.is_installed("fzf.vim") && g:plug.is_installed("fzf")
-  let g:fzf_action = {
-        \ 'ctrl-t': 'tab split',
-        \ 'ctrl-x': 'tab split',
-        \ 'ctrl-v': 'tab split' }
-
-  function! s:search_with_ag_under_cursor()
-    let g:env.vimrc.auto_cd_file_parentdir = g:false
-    let cwd = expand('%:p:h')
-    silent! call s:root()
-
-    call fzf#vim#ag(expand('<cword>'), {
-          \ 'sink': 'edit',
-          \ 'options': '--ansi --delimiter : --nth 4..,.. --prompt "Ag?> " '.
-          \            '--color hl:68,hl+:110 --multi '.
-          \            '--bind=ctrl-d:page-down,ctrl-u:page-up ',
-          \ 'tmux_height': '40%',
-          \ })
-    "execute 'lcd' cwd
-    execute 'lcd' expand('%:p:h')
-    let g:env.vimrc.auto_cd_file_parentdir = g:true
-  endfunction
-  nnoremap <silent> K :call <SID>search_with_ag_under_cursor()<CR>
-
-  nnoremap <silent> <Leader>m :call fzf#run({
-        \ 'source': 'sed "1d" $HOME/.vim_mru_files',
-        \ 'options' : '+s -e -m',
-        \ 'tmux_height': '40%',
-        \ 'sink': 'tabe'
-        \ })<CR>
 endif
 
 if g:plug.is_installed('anzu') "{{{1
@@ -55,7 +27,7 @@ if g:plug.is_installed('anzu') "{{{1
   augroup END
 endif
 
-if g:plug.is_installed("fzf.vim")
+if g:plug.is_installed('fzf.vim') "{{{1
   let g:fzf_action = {
         \ 'ctrl-t': 'tab split',
         \ 'ctrl-x': 'tab split',

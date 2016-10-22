@@ -11,11 +11,8 @@ endif
 "  augroup END
 "endif
 
-augroup MyAutoCmd
-    autocmd!
-augroup END
-
 autocmd GUIEnter * call s:gui()
+
 function! s:gui()
   "colorscheme solarized
   set background=light
@@ -50,13 +47,25 @@ function! s:gui()
     set guifont=Andale\ Mono:h12
   endif
 endfunction
+
 autocmd MyAutoCmd BufReadPost *
-\ if &modifiable && !search('[^\x00-\x7F]', 'cnw')
-\ | setlocal fileencoding=
-\ | endif
+            \ if &modifiable && !search('[^\x00-\x7F]', 'cnw')
+            \ | setlocal fileencoding=
+            \ | endif
 
 nmap <silent> gZZ :set t_te= t_ti= <cr>:quit<cr>:set t_te& t_ti&<cr>
 nmap <silent> gsh :set t_te= t_ti= <cr>:sh<cr>:set t_te& t_ti&<cr>
+
+" GUI IME Cursor colors
+if has('multi_byte_ime') || has('xim')
+  highlight Cursor guibg=NONE guifg=Yellow
+  highlight CursorIM guibg=NONE guifg=Red
+  set iminsert=0 imsearch=0
+  if has('xim') && has('GUI_GTK')
+    ""set imactivatekey=s-space
+  endif
+  inoremap <silent> <ESC><ESC>:set iminsert=0<CR>
+endif
 
 " __END__ {{{1
 " vim:fdm=marker expandtab fdc=3:

@@ -1,3 +1,7 @@
+if !exists('g:env')
+  finish
+endif
+
 function! s:has_plugin(name) "{{{1
   " Check {name} plugin whether there is in the runtime path
   let nosuffix = a:name =~? '\.vim$' ? a:name[:-5] : a:name

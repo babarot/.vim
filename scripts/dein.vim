@@ -1,3 +1,7 @@
+if !exists('g:env')
+  finish
+endif
+
 " Load dein.
 let s:dein_dir = finddir('dein.vim', '.;')
 if s:dein_dir != '' || &runtimepath !~ '/dein.vim'

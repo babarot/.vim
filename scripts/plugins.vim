@@ -1,3 +1,7 @@
+if !exists('g:env')
+  finish
+endif
+
 if g:plug.is_installed('caw') "{{{1
   vmap <C-k> <Plug>(caw:i:toggle)
   vmap K     <Plug>(caw:i:toggle)

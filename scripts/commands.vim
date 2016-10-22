@@ -1,3 +1,7 @@
+if !exists('g:env')
+  finish
+endif
+
 " In particular effective when I am garbled in a terminal
 command! -bang -bar -complete=file -nargs=? Utf8      edit<bang> ++enc=utf-8 <args>
 command! -bang -bar -complete=file -nargs=? Iso2022jp edit<bang> ++enc=iso-2022-jp <args>

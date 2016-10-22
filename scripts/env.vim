@@ -1,40 +1,27 @@
-let g:true  = 1
-let g:false = 0
-
-let s:is_windows = has('win16') || has('win32') || has('win64')
-let s:is_cygwin  = has('win32unix')
-let s:is_mac     = !s:is_windows && !s:is_cygwin
-      \ && (has('mac') || has('macunix') || has('gui_macvim') ||
-      \    (!executable('xdg-open') &&
-      \    system('uname') =~? '^darwin'))
-let s:is_linux   = !s:is_mac && has('unix')
-
-function! IsWindows() abort
-  return s:is_windows
-endfunction
-
-function! IsMac() abort
-  return s:is_mac
-endfunction
-
 function! s:vimrc_environment()
   let env = {}
+  let env.is_ = {}
+
+  let env.is_.windows = has('win16') || has('win32') || has('win64')
+  let env.is_.cygwin = has('win32unix')
+  let env.is_.mac = !env.is_.windows && !env.is_.cygwin
+              \ && (has('mac') || has('macunix') || has('gui_macvim') ||
+              \    (!executable('xdg-open') &&
+              \    system('uname') =~? '^darwin'))
+  let env.is_.linux = !env.is_.mac && has('unix')
+
 
   let env.is_starting = has('vim_starting')
   let env.is_gui      = has('gui_running')
+
   let env.hostname    = substitute(hostname(), '[^\w.]', '', '')
 
   " vim
-  if s:is_windows
+  if env.is_.windows
     let vimpath = expand('~/vimfiles')
   else
     let vimpath = expand('~/.vim')
   endif
-
-  " vim-plug
-  "let plug    = vimpath . "/autoload/plug.vim"
-  "let plugged = vimpath . "/plugged"
-  "let env.is_plug = filereadable(plug)
 
   let env.path = {
         \ 'vim': vimpath,
@@ -70,6 +57,14 @@ endfunction
 
 " g:env is an environment variable in vimrc
 let g:env = s:vimrc_environment()
+
+function! IsWindows() abort
+  return g:env.is_.windows
+endfunction
+
+function! IsMac() abort
+  return g:env.is_.mac
+endfunction
 
 " __END__ {{{1
 " vim:fdm=marker expandtab fdc=3:

@@ -1,3 +1,7 @@
+if !exists('g:env')
+  finish
+endif
+
 "if g:env.is_tmux_running
 "  augroup titlesettings
 "    autocmd!

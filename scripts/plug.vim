@@ -1,3 +1,7 @@
+if !exists('g:env')
+  finish
+endif
+
 let g:plug = {
             \ "plug":   expand(g:env.path.vim) . "/autoload/plug.vim",
             \ "base":   expand(g:env.path.vim) . "/plugged",

@@ -1,3 +1,7 @@
+if !exists('g:env')
+  finish
+endif
+
 set pumheight=10
 
 " Don't redraw while executing macros

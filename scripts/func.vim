@@ -1,3 +1,7 @@
+if !exists('g:env')
+  finish
+endif
+
 function! s:b4b4r07() "{{{1
   hide enew
   setlocal buftype=nofile nowrap nolist nonumber bufhidden=wipe

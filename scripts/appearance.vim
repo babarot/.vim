@@ -1,3 +1,7 @@
+if !exists('g:env')
+  finish
+endif
+
 syntax enable on
 set number
 
